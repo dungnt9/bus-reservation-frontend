@@ -5,6 +5,7 @@ const TOKEN_KEY = 'user_token'
 const USER_KEY = 'user_data'
 
 const authService = {
+  // Các phương thức hiện có
   async login(phoneNumber, password) {
     try {
       const response = await api.post('/auth/user-login', {
@@ -34,6 +35,35 @@ const authService = {
     }
   },
 
+  // Thêm các phương thức mới cho đăng ký
+  async sendOTP(phoneNumber) {
+    try {
+      const response = await api.post('/auth/verify-phone', { phoneNumber })
+      return response
+    } catch (error) {
+      throw new Error(error.response?.data?.message || 'Failed to send OTP')
+    }
+  },
+
+  async verifyOTP(phoneNumber, otp) {
+    try {
+      const response = await api.post('/auth/verify-otp', { phoneNumber, otp })
+      return response
+    } catch (error) {
+      throw new Error(error.response?.data?.message || 'Failed to verify OTP')
+    }
+  },
+
+  async register(userData) {
+    try {
+      const response = await api.post('/auth/register', userData)
+      return response
+    } catch (error) {
+      throw new Error(error.response?.data?.message || 'Registration failed')
+    }
+  },
+
+  // Các phương thức hiện có khác
   logout() {
     localStorage.removeItem(TOKEN_KEY)
     localStorage.removeItem(USER_KEY)

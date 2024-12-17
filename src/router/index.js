@@ -37,6 +37,12 @@ const router = createRouter({
         requiresAuth: true,
         roles: ['customer']
       }
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: () => import('../views/Register.vue'),
+      meta: { public: true }
     }
   ]
 })
