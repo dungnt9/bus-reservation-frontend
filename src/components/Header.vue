@@ -2,7 +2,6 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <a class="navbar-brand" href="#">Jadoo</a>
-      <!-- Nút toggle menu cho màn hình nhỏ -->
       <button
         class="navbar-toggler"
         type="button"
@@ -14,22 +13,74 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- Menu chính -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
-          <li class="nav-item"><a class="nav-link" href="/book">Đặt vé</a></li>
-          <li class="nav-item"><a class="nav-link" href="/track">Theo dõi chuyến xe</a></li>
-          <li class="nav-item"><a class="nav-link" href="/invoice">Hóa đơn</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-          <li class="nav-item"><button class="sign-up-button">Sign up</button></li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/">Trang chủ</router-link>
+          </li>
+
+          <!-- Show based on user role -->
+          <template v-if="authStore.isAuthenticated">
+            <!-- For Customers -->
+            <template v-if="authStore.userRole === 'customer'">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/book">Đặt vé</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/invoice">Hóa đơn</router-link>
+              </li>
+            </template>
+
+            <!-- For Drivers and Assistants -->
+            <template v-if="['driver', 'assistant'].includes(authStore.userRole)">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/track">Theo dõi chuyến xe</router-link>
+              </li>
+            </template>
+
+            <!-- User info and logout -->
+            <li class="nav-item">
+              <span class="nav-link user-name">{{ authStore.userName }}</span>
+            </li>
+            <li class="nav-item">
+              <button @click="handleLogout" class="sign-up-button">Đăng xuất</button>
+            </li>
+          </template>
+
+          <!-- Show when not authenticated -->
+          <template v-else>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <button class="sign-up-button">Sign up</button>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
   </nav>
 </template>
 
+<script setup>
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const authStore = useAuthStore()
+
+const handleLogout = () => {
+  authStore.logout()
+  router.push('/login')
+}
+</script>
+
 <style scoped>
+.user-name {
+  font-weight: 500;
+  color: #ffa500;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
