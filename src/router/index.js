@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import TrackTrip from '@/views/TrackTrip.vue'
 import Invoice from '@/views/Invoice.vue'
 import Login from '@/views/Login.vue'
+import UserProfile from '@/views/UserProfile.vue'
 import authService from '@/services/authService'
 
 const router = createRouter({
@@ -19,6 +20,15 @@ const router = createRouter({
       name: 'Login',
       component: Login,
       meta: { public: true }
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: UserProfile,
+      meta: {
+        requiresAuth: true,
+        roles: ['customer', 'driver', 'assistant']
+      }
     },
     {
       path: '/track',
@@ -68,18 +78,6 @@ router.beforeEach((to, from, next) => {
   // Check role-based access
   if (to.meta.roles && !to.meta.roles.includes(userRole)) {
     next('/')
-    return
-  }
-
-  // If login page is accessed while already authenticated
-  if (to.path === '/login' && isAuthenticated) {
-    if (userRole === 'customer') {
-      next('/')
-    } else if (['driver', 'assistant'].includes(userRole)) {
-      next('/track')
-    } else {
-      next('/')
-    }
     return
   }
 

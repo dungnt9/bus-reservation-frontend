@@ -39,11 +39,20 @@
             </template>
 
             <!-- User info and logout -->
-            <li class="nav-item">
-              <span class="nav-link user-name">{{ authStore.userName }}</span>
-            </li>
-            <li class="nav-item">
-              <button @click="handleLogout" class="sign-up-button">Đăng xuất</button>
+            <li class="nav-item dropdown" ref="dropdownRef">
+              <div class="user-profile" @click.stop="toggleDropdown">
+                <span class="nav-link user-name">{{ authStore.userName }}</span>
+                <i class="fas fa-chevron-down" :class="{ 'rotate': showDropdown }"></i>
+              </div>
+              <div class="dropdown-menu" :class="{ 'show': showDropdown }">
+                <router-link to="/profile" class="dropdown-item" @click="showDropdown = false">
+                  <i class="fas fa-user"></i> Thông tin của bạn
+                </router-link>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item" @click.prevent="handleLogout">
+                  <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                </a>
+              </div>
             </li>
           </template>
 
@@ -63,22 +72,44 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const authStore = useAuthStore()
+const showDropdown = ref(false)
+
+const toggleDropdown = () => {
+  showDropdown.value = !showDropdown.value
+}
+
+const handleClickOutside = (event) => {
+  const dropdown = document.querySelector('.dropdown')
+  if (dropdown && !dropdown.contains(event.target)) {
+    showDropdown.value = false
+  }
+}
 
 const handleLogout = () => {
   authStore.logout()
   router.push('/login')
 }
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
 </script>
 
 <style scoped>
 .user-name {
   font-weight: 500;
   color: #ffa500;
+  cursor: pointer;
 }
 
 .navbar {
@@ -113,7 +144,7 @@ const handleLogout = () => {
 }
 
 .nav-link:hover {
-  color: #ffa500; /* Orange hover effect */
+  color: #ffa500;
 }
 
 .sign-up-button {
@@ -123,9 +154,9 @@ const handleLogout = () => {
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;
+  color: #333;
 }
 
 .sign-up-button:hover {
@@ -133,16 +164,61 @@ const handleLogout = () => {
   color: white;
 }
 
-.language-selector {
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.user-profile {
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  gap: 0.5rem;
   cursor: pointer;
 }
 
-.dropdown-icon {
-  margin-left: 0.3rem;
-  font-size: 0.8rem;
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #e9ecef;
+  margin: 0.5rem 0;
+}
+
+.fa-chevron-down {
+  transition: transform 0.3s ease;
+}
+
+.dropdown.show .fa-chevron-down {
+  transform: rotate(180deg);
+}
+
+.fa-chevron-down.rotate {
+  transform: rotate(180deg);
 }
 
 li {

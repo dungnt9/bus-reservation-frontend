@@ -25,6 +25,21 @@ export const useAuthStore = defineStore('auth', {
       authService.logout()
       this.user = null
       this.token = null
+    },
+
+    updateUserName(newName) {
+      if (this.user) {
+        this.user = {
+          ...this.user,
+          fullName: newName
+        }
+        // Update in localStorage
+        const userData = authService.getCurrentUser()
+        if (userData) {
+          userData.fullName = newName
+          localStorage.setItem('user_data', JSON.stringify(userData))
+        }
+      }
     }
   }
 })
