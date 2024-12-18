@@ -31,6 +31,15 @@ const router = createRouter({
       }
     },
     {
+      path: '/change-password',
+      name: 'ChangePassword',
+      component: () => import('../views/ChangePassword.vue'),
+      meta: {
+        requiresAuth: true,
+        roles: ['customer', 'driver', 'assistant']
+      }
+    },
+    {
       path: '/track',
       name: 'TrackTrip',
       component: TrackTrip,

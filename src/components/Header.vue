@@ -48,6 +48,9 @@
                 <router-link to="/profile" class="dropdown-item" @click="showDropdown = false">
                   <i class="fas fa-user"></i> Thông tin của bạn
                 </router-link>
+                <router-link to="/change-password" class="dropdown-item" @click="showDropdown = false">
+                  <i class="fas fa-key"></i> Đổi mật khẩu
+                </router-link>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item" @click.prevent="handleLogout">
                   <i class="fas fa-sign-out-alt"></i> Đăng xuất
@@ -62,7 +65,7 @@
               <router-link class="nav-link" to="/login">Login</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/register" class="sign-up-button">Sign up</router-link>
+              <router-link to="/register" class="nav-link">Sign up</router-link>
             </li>
           </template>
         </ul>
@@ -145,23 +148,6 @@ onUnmounted(() => {
 
 .nav-link:hover {
   color: #ffa500;
-}
-
-.sign-up-button {
-  padding: 0.5rem 1rem;
-  background-color: transparent;
-  border: 1px solid #333;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  text-decoration: none;
-  color: #333;
-}
-
-.sign-up-button:hover {
-  background-color: #ffa500;
-  color: white;
 }
 
 /* Dropdown styles */
