@@ -23,9 +23,9 @@
           <template v-if="authStore.isAuthenticated">
             <!-- For Customers -->
             <template v-if="authStore.userRole === 'customer'">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <router-link class="nav-link" to="/book">Đặt vé</router-link>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <router-link class="nav-link" to="/invoice">Hóa đơn</router-link>
               </li>

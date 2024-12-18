@@ -70,4 +70,7 @@ a {
   text-decoration: none;
   color: #000;
 }
+.footer {
+  background-color: #FFF8EF;
+}
 </style>
