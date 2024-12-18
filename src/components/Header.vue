@@ -27,7 +27,7 @@
                 <router-link class="nav-link" to="/book">Đặt vé</router-link>
               </li> -->
               <li class="nav-item">
-                <router-link class="nav-link" to="/invoice">Hóa đơn</router-link>
+                <router-link class="nav-link" to="/invoice">Hóa đơn của tôi</router-link>
               </li>
             </template>
 
