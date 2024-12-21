@@ -63,11 +63,11 @@
             <label>Password</label>
             <input
               type="password"
-              v-model="userData.password"
+              v-model="userData.password_hash"
               placeholder="Enter password"
-              :class="{ 'error': errors.password }"
+              :class="{ 'error': errors.password_hash }"
             />
-            <span class="error-message" v-if="errors.password">{{ errors.password }}</span>
+            <span class="error-message" v-if="errors.password_hash">{{ errors.password_hash }}</span>
           </div>
 
           <div class="form-group">
@@ -125,7 +125,7 @@ const userData = reactive({
   fullName: '',
   phoneNumber: '',
   email: '',
-  password: '',
+  password_hash: '',
   gender: 'male',
   dateOfBirth: '',
   address: ''
@@ -135,7 +135,7 @@ const errors = reactive({
   phoneNumber: '',
   otp: '',
   fullName: '',
-  password: '',
+  password_hash: '',
   dateOfBirth: ''
 });
 
@@ -190,7 +190,7 @@ const verifyOTP = async () => {
 const validateRegistrationForm = () => {
   let isValid = true;
   errors.fullName = '';
-  errors.password = '';
+  errors.password_hash = '';
   errors.dateOfBirth = '';
 
   if (!userData.fullName) {
@@ -198,13 +198,8 @@ const validateRegistrationForm = () => {
     isValid = false;
   }
 
-  if (!userData.password || userData.password.length < 6) {
-    errors.password = 'Password must be at least 6 characters';
-    isValid = false;
-  }
-
-  if (!userData.dateOfBirth) {
-    errors.dateOfBirth = 'Date of birth is required';
+  if (!userData.password_hash || userData.password_hash.length < 6) {
+    errors.password_hash = 'Password must be at least 6 characters';
     isValid = false;
   }
 
