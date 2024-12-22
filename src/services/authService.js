@@ -94,7 +94,29 @@ const authService = {
       this.logout()
       return false
     }
-  }
+  },
+
+  async forgotPassword(phoneNumber) {
+    try {
+        const response = await api.post('/auth/forgot-password', { phoneNumber })
+        return response
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Gửi mã OTP thất bại')
+    }
+  },
+
+  async resetPassword(phoneNumber, otp, newPassword) {
+      try {
+          const response = await api.post('/auth/reset-password', {
+              phoneNumber,
+              otp,
+              newPassword
+          })
+          return response
+      } catch (error) {
+          throw new Error(error.response?.data?.message || 'Đặt lại mật khẩu thất bại')
+      }
+  },
 }
 
 export default authService
