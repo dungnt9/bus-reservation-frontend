@@ -1,5 +1,6 @@
+// src/views/Login.vue
 <template>
-  <div class="login-container">
+  <div :class="['login-container', { 'popup-mode': popupMode }]">
     <div class="login-box">
       <!-- Normal Login Form -->
       <div v-if="!showForgotPassword" class="login-content">
@@ -159,6 +160,15 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import authService from '@/services/authService'
 
+const props = defineProps({
+  popupMode: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits(['login-success']);
+
 const router = useRouter()
 const authStore = useAuthStore()
 
@@ -267,11 +277,15 @@ const handleLogin = async () => {
 
     const response = await authStore.login(phoneNumber.value, password.value)
 
-    const userRole = response.user.userRole
-    if (userRole === 'customer') {
-      router.push('/')
-    } else if (userRole === 'driver' || userRole === 'assistant') {
-      router.push('/track')
+    if (props.popupMode) {
+      emit('login-success');
+    } else {
+      const userRole = response.user.userRole
+      if (userRole === 'customer') {
+        router.push('/')
+      } else if (userRole === 'driver' || userRole === 'assistant') {
+        router.push('/track')
+      }
     }
   } catch (error) {
     errorMessage.value = error.message
@@ -313,6 +327,18 @@ const handleResetPassword = async () => {
   justify-content: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 20px;
+}
+
+.popup-mode {
+  min-height: auto;
+  padding: 0;
+  background: none;
+}
+
+.popup-mode .login-box {
+  box-shadow: none;
+  padding: 20px;
+  margin: 0;
 }
 
 .login-box {
@@ -546,7 +572,6 @@ input.error {
   text-decoration: underline;
 }
 
-/* Animation for form transitions */
 .login-content {
   animation: fadeIn 0.3s ease;
 }
@@ -562,7 +587,6 @@ input.error {
   }
 }
 
-/* Responsive Design */
 @media (max-width: 480px) {
   .login-box {
     padding: 30px 20px;
@@ -614,7 +638,6 @@ input.error {
   }
 }
 
-/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .login-box {
     background: rgba(255, 255, 255, 0.98);

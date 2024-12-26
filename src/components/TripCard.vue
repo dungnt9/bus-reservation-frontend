@@ -29,6 +29,14 @@
       </div>
     </div>
 
+    <!-- Login Modal -->
+    <LoginModal
+      v-if="showLoginModal"
+      :show="showLoginModal"
+      @close="showLoginModal = false"
+      @login-success="handleLoginSuccess"
+    />
+
     <!-- Phần chọn ghế -->
     <div v-if="showSeatSelection" class="seat-selection">
       <div class="seat-selection-header">
@@ -66,12 +74,14 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth';
 import Seat from './Seat.vue';
+import LoginModal from './LoginModal.vue';
 import api from '@/services/api';
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const props = defineProps({
   trip: {
     type: Object,
@@ -79,8 +89,8 @@ const props = defineProps({
   }
 });
 
-const router = useRouter();
 const authStore = useAuthStore();
+const showLoginModal = ref(false);
 const showSeatSelection = ref(false);
 const selectedSeats = ref([]);
 const bookedSeats = ref([]);
@@ -88,7 +98,7 @@ const bookedSeats = ref([]);
 // Computed properties
 const selectedSeatsDisplay = computed(() => {
   return selectedSeats.value.length > 0
-    ? selectedSeats.value.sort((a, b) => a - b).join(', ')
+    ? [...selectedSeats.value].sort((a, b) => a - b).join(', ')
     : 'Chưa chọn ghế';
 });
 
@@ -99,13 +109,14 @@ const totalPrice = computed(() => {
 // Methods
 const handleSelectClick = async () => {
   if (!authStore.isAuthenticated) {
-    // Lưu URL hiện tại để sau khi đăng nhập quay lại
-    localStorage.setItem('redirectAfterLogin', router.currentRoute.value.fullPath);
-    router.push('/login');
+    showLoginModal.value = true;
     return;
   }
 
-  // Lấy thông tin ghế từ server
+  await loadSeats();
+};
+
+const loadSeats = async () => {
   try {
     const response = await api.get(`/trips/${props.trip.tripId}/seats`);
     bookedSeats.value = response.seats
@@ -116,6 +127,10 @@ const handleSelectClick = async () => {
     console.error('Error fetching seats:', error);
     alert('Có lỗi xảy ra khi tải thông tin ghế');
   }
+};
+
+const handleLoginSuccess = async () => {
+  await loadSeats();
 };
 
 const handleSeatSelection = (seats) => {
