@@ -167,7 +167,7 @@ const searchTrips = async () => {
 
 const fetchRoutes = async () => {
   try {
-    const response = await api.get('/routes')
+    const response = await api.get('/routes/all')
     routes.value = response.filter(route => route.routeStatus === 'active')
   } catch (error) {
     console.error('Error fetching routes:', error)
