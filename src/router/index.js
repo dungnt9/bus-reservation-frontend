@@ -4,6 +4,7 @@ import TrackTrip from '@/views/TrackTrip.vue'
 import Invoice from '@/views/Invoice.vue'
 import Login from '@/views/Login.vue'
 import UserProfile from '@/views/UserProfile.vue'
+import Payment from '@/views/Payment.vue'
 import authService from '@/services/authService'
 
 const router = createRouter({
@@ -62,7 +63,16 @@ const router = createRouter({
       name: 'Register',
       component: () => import('../views/Register.vue'),
       meta: { public: true }
-    }
+    },
+    {
+      path: '/payment',
+      name: 'Payment',
+      component: Payment,
+      meta: {
+        requiresAuth: true,
+        roles: ['customer']
+      }
+    },
   ]
 })
 
