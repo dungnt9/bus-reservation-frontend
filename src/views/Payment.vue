@@ -1,9 +1,8 @@
-// src/views/Payment.vue
 <template>
   <div class="payment-container">
-    <div class="container py-5">
+    <div class="container">
       <div v-if="!paymentSuccess" class="payment-card">
-        <div class="card shadow">
+        <div class="card">
           <div class="card-body">
             <h3 class="card-title text-center mb-4">Xác nhận thanh toán</h3>
 
@@ -192,8 +191,7 @@ const goHome = () => {
 
 <style scoped>
 .payment-container {
-  min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   padding: 2rem 0;
 }
 
@@ -201,6 +199,10 @@ const goHome = () => {
 .success-card .card {
   border: none;
   border-radius: 15px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1),
+              0px -2px 8px rgba(0, 0, 0, 0.05),
+              -2px 0px 8px rgba(0, 0, 0, 0.05),
+              2px 0px 8px rgba(0, 0, 0, 0.05);
 }
 
 .info-table {
