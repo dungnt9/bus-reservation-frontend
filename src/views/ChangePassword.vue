@@ -155,7 +155,7 @@ const handleSubmit = async () => {
   background: white;
   border-radius: 12px;
   padding: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 .form-group {
