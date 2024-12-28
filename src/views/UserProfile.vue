@@ -212,7 +212,10 @@ onMounted(fetchUserData)
   background: white;
   border-radius: 12px;
   padding: 30px;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1),
+              0px -2px 8px rgba(0, 0, 0, 0.05),
+              -2px 0px 8px rgba(0, 0, 0, 0.05),
+              2px 0px 8px rgba(0, 0, 0, 0.05);
 }
 
 h2 {

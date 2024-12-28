@@ -184,25 +184,43 @@ onMounted(() => {
 <style scoped>
 .home-container {
   min-height: 100vh;
-  background-color: #FFF8EF;
+  background-color: #ffffff;
 }
 
 .search-section {
   padding: 60px 0;
-  background: linear-gradient(135deg, #fff8ef 0%, #fff 100%);
+  background-color: #ffffff;
 }
 
 .search-box {
   background: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1),
+              0px -2px 8px rgba(0, 0, 0, 0.05),
+              -2px 0px 8px rgba(0, 0, 0, 0.05),
+              2px 0px 8px rgba(0, 0, 0, 0.05);
+  animation: moveUp 0.5s ease-out;
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(30px); /* Vị trí ban đầu: ở dưới */
+    opacity: 0; /* Bắt đầu với độ mờ */
+  }
+  100% {
+    transform: translateY(0); /* Vị trí cuối: tại chỗ */
+    opacity: 1; /* Hoàn toàn hiện */
+  }
 }
 
 .search-box h2 {
-  font-size: 2rem;
-  color: #333;
+  font-size: 2rem; /* Tăng kích thước chữ */
+  font-family: 'Inter', sans-serif; /* Font chữ hiện đại */
+  font-weight: bold; /* Đậm nét */
+  text-align: center; /* Căn giữa */
   margin-bottom: 30px;
+  color: rgb(255, 136, 0);
 }
 
 .form-group {
@@ -255,7 +273,7 @@ label {
 .traveller-img {
   max-width: 100%;
   height: auto;
-  animation: moveImage 1s ease-out forwards;
+  animation: moveImage 2s ease-out forwards;
 }
 
 .results-section {

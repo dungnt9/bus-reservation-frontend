@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="#">Jadoo</a>
+      <a class="navbar-brand" href="#">Xe khách</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -109,25 +109,42 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.container {
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1),
+              0px -2px 4px rgba(0, 0, 0, 0.05),
+              -2px 0px 4px rgba(0, 0, 0, 0.05),
+              2px 0px 4px rgba(0, 0, 0, 0.05);
+  padding: 10px 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  background: #FFF8EF;
+}
+
+.container:hover {
+  transform: scale(1.001);
+  box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3),
+              0px -4px 10px rgba(255, 165, 0, 0.15),
+              -4px 0px 10px rgba(255, 165, 0, 0.15),
+              4px 0px 10px rgba(255, 165, 0, 0.15);
+}
+
 .user-name {
-  font-weight: 500;
+  font-weight: bold;
   color: #ffa500;
   cursor: pointer;
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: #ffffff; /* Gradient màu cam */
   padding: 1rem 2rem;
-  background-color: #fff8ef;
-  font-family: Arial, sans-serif;
+  color: #fff;
 }
 
 .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: orange;
+  padding-left: 20px;
+  color: #ffa500;
+  font-weight: 500;
 }
 
 .navbar-menu {
@@ -144,9 +161,11 @@ onUnmounted(() => {
   color: #333;
   font-size: 1rem;
   transition: color 0.3s;
+  font-weight: 500;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.router-link-active {
   color: #ffa500;
 }
 

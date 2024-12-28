@@ -24,5 +24,6 @@ import Footer from './components/Footer.vue'
 
 .content {
   flex-grow: 1;
+  background-color: #ffffff;
 }
 </style>

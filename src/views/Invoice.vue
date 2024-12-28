@@ -132,7 +132,10 @@ onMounted(fetchInvoices)
   background: white;
   border-radius: 12px;
   padding: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1),
+              0px -2px 8px rgba(0, 0, 0, 0.05),
+              -2px 0px 8px rgba(0, 0, 0, 0.05),
+              2px 0px 8px rgba(0, 0, 0, 0.05);
 }
 
 .page-title {

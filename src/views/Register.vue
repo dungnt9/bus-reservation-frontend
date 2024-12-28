@@ -225,11 +225,11 @@ const handleRegister = async () => {
 
 <style scoped>
 .register-container {
-  min-height: 100vh;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #ffffff;
   padding: 20px;
 }
 
@@ -239,7 +239,10 @@ const handleRegister = async () => {
   background: white;
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1),
+              0px -2px 8px rgba(0, 0, 0, 0.05),
+              -2px 0px 8px rgba(0, 0, 0, 0.05),
+              2px 0px 8px rgba(0, 0, 0, 0.05);
 }
 
 .form-group {
@@ -278,17 +281,13 @@ textarea {
 button {
   width: 100%;
   padding: 12px;
-  background: #667eea;
+  background: linear-gradient(to right, #ffac3f, #ffba65);
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-button:hover {
-  background: #5a6fe4;
 }
 
 button:disabled {
