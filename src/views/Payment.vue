@@ -83,6 +83,10 @@
             <h3 class="mb-3">Thanh toán thành công!</h3>
             <p class="mb-4">Cảm ơn bạn đã đặt vé. Mã hóa đơn của bạn là: #{{ invoiceId }}</p>
             <div class="d-flex gap-3 justify-content-center">
+              <button class="btn btn-primary" @click="viewTickets">
+                <i class="fas fa-ticket-alt me-2"></i>
+                Xem vé
+              </button>
               <button class="btn btn-primary" @click="viewInvoice">
                 Xem hóa đơn
               </button>
@@ -180,6 +184,10 @@ const goBack = () => {
   router.back();
 };
 
+const viewTickets = () => {
+  router.push('/tickets');
+};
+
 const viewInvoice = () => {
   router.push('/invoice');
 };
@@ -268,6 +276,29 @@ const goHome = () => {
 .payment-method-option i {
   font-size: 2rem;
   color: #0d6efd;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
 }
 
 .success-icon {
