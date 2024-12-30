@@ -5,6 +5,8 @@ import Invoice from '@/views/Invoice.vue'
 import Login from '@/views/Login.vue'
 import UserProfile from '@/views/UserProfile.vue'
 import Payment from '@/views/Payment.vue'
+import Tickets from '@/views/Tickets.vue'
+import TicketDetail from '@/views/TicketDetail.vue'
 import authService from '@/services/authService'
 
 const router = createRouter({
@@ -53,6 +55,25 @@ const router = createRouter({
       path: '/invoice',
       name: 'Invoice',
       component: Invoice,
+      meta: {
+        requiresAuth: true,
+        roles: ['customer']
+      }
+    },
+    {
+      path: '/tickets',
+      name: 'Tickets',
+      component: Tickets,
+      meta: {
+        requiresAuth: true,
+        roles: ['customer']
+      }
+    },
+    {
+      path: '/tickets/:id',
+      name: 'TicketDetail',
+      component: TicketDetail,
+      props: true,
       meta: {
         requiresAuth: true,
         roles: ['customer']

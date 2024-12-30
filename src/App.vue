@@ -15,6 +15,22 @@ import Footer from './components/Footer.vue'
 </template>
 
 <style scoped>
+@media print {
+  .app-container > *:not(.content) {
+    display: none !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .content {
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .app-container {
   width: 100%;
   min-height: 100vh;

@@ -23,11 +23,17 @@
           <template v-if="authStore.isAuthenticated">
             <!-- For Customers -->
             <template v-if="authStore.userRole === 'customer'">
-              <!-- <li class="nav-item">
-                <router-link class="nav-link" to="/book">Đặt vé</router-link>
-              </li> -->
               <li class="nav-item">
-                <router-link class="nav-link" to="/invoice">Hóa đơn của tôi</router-link>
+                <router-link class="nav-link" to="/tickets">
+                  <i class="fas fa-ticket-alt"></i>
+                  Vé của tôi
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/invoice">
+                  <i class="fas fa-file-invoice"></i>
+                  Hóa đơn của tôi
+                </router-link>
               </li>
             </template>
 
