@@ -57,6 +57,9 @@
                 <router-link to="/change-password" class="dropdown-item" @click="showDropdown = false">
                   <i class="fas fa-key"></i> Đổi mật khẩu
                 </router-link>
+                <router-link to="/change-phone" class="dropdown-item" @click="showDropdown = false">
+                  <i class="fas fa-phone"></i> Đổi số điện thoại
+                </router-link>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item" @click.prevent="handleLogout">
                   <i class="fas fa-sign-out-alt"></i> Đăng xuất

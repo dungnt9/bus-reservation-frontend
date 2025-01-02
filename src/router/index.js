@@ -94,6 +94,15 @@ const router = createRouter({
         roles: ['customer']
       }
     },
+    {
+      path: '/change-phone',
+      name: 'ChangePhone',
+      component: () => import('../views/ChangePhone.vue'),
+      meta: {
+        requiresAuth: true,
+        roles: ['customer', 'driver', 'assistant']
+      }
+    }
   ]
 })
 

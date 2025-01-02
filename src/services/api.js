@@ -9,6 +9,12 @@ const api = axios.create({
   }
 })
 
+// Danh sách các endpoints không cần xử lý logout khi có lỗi 401
+const IGNORE_UNAUTHORIZED_ENDPOINTS = [
+  '/auth/request-phone-change',
+  '/auth/verify-phone-change'
+]
+
 // Request interceptor thêm token vào header
 api.interceptors.request.use(
   (config) => {
@@ -27,7 +33,13 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
-    if (error.response?.status === 401) {
+    // Kiểm tra xem có phải là endpoint cần bỏ qua xử lý logout không
+    const requestUrl = error.config?.url
+    const shouldIgnoreUnauthorized = IGNORE_UNAUTHORIZED_ENDPOINTS.some(endpoint =>
+      requestUrl?.includes(endpoint)
+    )
+
+    if (error.response?.status === 401 && !shouldIgnoreUnauthorized) {
       // Token hết hạn hoặc không hợp lệ
       authService.logout()
       window.location.href = '/login'
