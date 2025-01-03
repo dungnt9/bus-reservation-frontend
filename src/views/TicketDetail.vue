@@ -103,13 +103,6 @@ import { useRouter, useRoute } from 'vue-router'
 import api from '@/services/api'
 import { useAuthStore } from '@/stores/auth'
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true
-  }
-})
-
 const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
