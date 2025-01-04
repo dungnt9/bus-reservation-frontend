@@ -14,8 +14,15 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 import Login from '@/views/Login.vue';
+
+const props = defineProps({
+  show: {
+    type: Boolean,
+    required: true
+  }
+});
 
 const emit = defineEmits(['close', 'login-success']);
 
