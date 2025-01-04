@@ -3,26 +3,26 @@
     <div class="register-box">
       <!-- Step 1: Phone Verification -->
       <div v-if="currentStep === 1">
-        <h2>Phone Verification</h2>
+        <h2>Xác minh số điện thoại</h2>
         <form @submit.prevent="sendOTP">
           <div class="form-group">
-            <label>Phone Number</label>
+            <label>Số điện thoại</label>
             <input
               type="text"
               v-model="phoneNumber"
-              placeholder="Enter your phone number"
+              placeholder="Nhập số điện thoại"
               :class="{ 'error': errors.phoneNumber }"
             />
             <span class="error-message" v-if="errors.phoneNumber">{{ errors.phoneNumber }}</span>
           </div>
           <button type="submit" :disabled="loading">
-            {{ otpSent ? 'Resend OTP' : 'Send OTP' }}
+            {{ otpSent ? 'Gửi lại OTP' : 'Gửi OTP' }}
           </button>
         </form>
 
         <div v-if="otpSent" class="otp-section">
           <div class="form-group">
-            <label>Enter OTP</label>
+            <label>Gửi OTP</label>
             <input
               type="text"
               v-model="otp"
@@ -31,20 +31,19 @@
             />
             <span class="error-message" v-if="errors.otp">{{ errors.otp }}</span>
           </div>
-          <button @click="verifyOTP" :disabled="loading">Verify OTP</button>
+          <button @click="verifyOTP" :disabled="loading">Xác minh OTP</button>
         </div>
       </div>
 
       <!-- Step 2: Registration Form -->
       <div v-if="currentStep === 2">
-        <h2>Complete Registration</h2>
+        <h2>Nhập thông tin đăng ký</h2>
         <form @submit.prevent="handleRegister">
           <div class="form-group">
-            <label>Full Name</label>
+            <label>Họ và tên</label>
             <input
               type="text"
               v-model="userData.fullName"
-              placeholder="Enter your full name"
               :class="{ 'error': errors.fullName }"
             />
             <span class="error-message" v-if="errors.fullName">{{ errors.fullName }}</span>
@@ -60,7 +59,7 @@
           </div>
 
           <div class="form-group">
-            <label>Password</label>
+            <label>Mật khẩu</label>
             <input
               type="password"
               v-model="userData.password_hash"
@@ -71,16 +70,16 @@
           </div>
 
           <div class="form-group">
-            <label>Gender</label>
+            <label>Giới tính</label>
             <select v-model="userData.gender">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+              <option value="male">Nam</option>
+              <option value="female">Nữ</option>
+              <option value="other">Khác</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>Date of Birth</label>
+            <label>Ngày sinh</label>
             <input
               type="date"
               v-model="userData.dateOfBirth"
@@ -90,10 +89,9 @@
           </div>
 
           <div class="form-group">
-            <label>Address</label>
+            <label>Địa chỉ</label>
             <textarea
               v-model="userData.address"
-              placeholder="Enter your address"
             ></textarea>
           </div>
 
@@ -234,6 +232,7 @@ const handleRegister = async () => {
 }
 
 .register-box {
+  margin-top: 30rem;
   width: 100%;
   max-width: 500px;
   background: white;

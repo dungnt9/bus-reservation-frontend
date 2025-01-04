@@ -5,7 +5,7 @@
       <img src="/images/comingSoon/icon-face.svg" alt="Icon" class="icon-image" />
       <h1>Coming soon...</h1>
       <p>
-        Jadoo vẫn đang nỗ lực phát triển tính năng để mang tới trải nghiệm tốt nhất cho bạn. Hãy đón
+        Xe khách Hải Phòng vẫn đang nỗ lực phát triển tính năng để mang tới trải nghiệm tốt nhất cho bạn. Hãy đón
         chờ nhé!
       </p>
     </div>

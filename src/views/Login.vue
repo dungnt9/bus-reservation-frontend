@@ -5,15 +5,15 @@
       <div v-if="!showForgotPassword" class="login-content">
         <div class="login-header">
           <img src="/bus_logo.svg" alt="Bus Logo" class="logo" />
-          <h1>Welcome Back</h1>
-          <p>Please sign in to continue</p>
+          <h1>Xin chào!</h1>
+          <p>Hãy đăng nhập để sử dụng tiện ích đặt vé!</p>
         </div>
 
         <form @submit.prevent="handleLogin" class="login-form">
           <div class="form-group">
             <label>
               <i class="fas fa-phone"></i>
-              Phone Number
+              Số điện thoại
             </label>
             <input
               type="text"
@@ -28,7 +28,7 @@
           <div class="form-group">
             <label>
               <i class="fas fa-lock"></i>
-              Password
+              Mật khẩu
             </label>
             <div class="password-input">
               <input
@@ -47,7 +47,7 @@
             </div>
             <span class="error-message" v-if="errors.password">{{ errors.password }}</span>
             <div class="forgot-password">
-              <a href="#" @click.prevent="toggleForgotPassword">Forgot Password?</a>
+              <a href="#" @click.prevent="toggleForgotPassword">Quên mật khẩu</a>
             </div>
           </div>
 
@@ -57,13 +57,13 @@
           </div>
 
           <button type="submit" class="login-button" :disabled="loading">
-            <span v-if="!loading">Sign In</span>
+            <span v-if="!loading">Đăng nhập</span>
             <div v-else class="spinner"></div>
           </button>
         </form>
 
         <div class="login-footer">
-          <p>Don't have an account? <router-link to="/register">Sign up</router-link></p>
+          <p>Bạn chưa có tài khoản? <router-link to="/register">Đăng ký tài khoản</router-link></p>
         </div>
       </div>
 

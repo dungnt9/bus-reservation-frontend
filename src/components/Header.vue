@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="#">Xe khách</a>
+      <a class="navbar-brand" href="/">Xe khách Hải Phòng</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -71,10 +71,10 @@
           <!-- Show when not authenticated -->
           <template v-else>
             <li class="nav-item">
-              <router-link class="nav-link" to="/login">Login</router-link>
+              <router-link class="nav-link" to="/login">Đăng nhập</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/register" class="nav-link">Sign up</router-link>
+              <router-link to="/register" class="nav-link">Đăng ký</router-link>
             </li>
           </template>
         </ul>
