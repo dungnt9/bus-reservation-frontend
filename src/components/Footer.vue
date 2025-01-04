@@ -71,6 +71,6 @@ a {
   color: #000;
 }
 .footer {
-  background-color: #ffffff;
+  background-color: #FFF8EF;
 }
 </style>

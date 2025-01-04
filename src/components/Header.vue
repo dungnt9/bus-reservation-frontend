@@ -184,6 +184,7 @@ onUnmounted(() => {
 }
 
 .user-profile {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -191,30 +192,38 @@ onUnmounted(() => {
 }
 
 .dropdown-menu {
-  display: none;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
+  position: absolute;
+  top: 100%; /* Đảm bảo dropdown nằm ngay dưới phần "Tên" */
+  left: 0;
+  z-index: 1050; /* Đảm bảo dropdown luôn nằm trên cùng */
+  min-width: 200px; /* Đảm bảo độ rộng tối thiểu */
+  background-color: #ffffff; /* Màu nền trắng */
+  border: 1px solid #e9ecef; /* Đường viền nhẹ */
+  border-radius: 0.25rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
 }
 
 .dropdown-menu.show {
   display: block;
   opacity: 1;
   transform: translateY(0);
+  z-index: 1050; /* Luôn giữ trên cùng */
 }
 
 .dropdown-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
   color: #333;
-  text-decoration: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dropdown-item:hover {
-  background-color: #f8f9fa;
+  background-color: #ffa500;
+  color: #fff;
 }
 
 .dropdown-divider {

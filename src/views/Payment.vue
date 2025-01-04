@@ -281,6 +281,7 @@ const goHome = () => {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;

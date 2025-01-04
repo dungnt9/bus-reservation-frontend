@@ -268,9 +268,13 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 5rem;
 }
 
 .traveller-img {
+  position: relative; /* Hoặc absolute nếu cần */
+  z-index: 1; /* Đảm bảo z-index thấp hơn dropdown */
+  pointer-events: none; /* Ngăn chặn sự kiện chuột nếu dropdown bị ảnh hưởng */
   max-width: 100%;
   height: auto;
   animation: moveImage 2s ease-out forwards;
@@ -304,11 +308,11 @@ label {
 @keyframes moveImage {
   from {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(200px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(500);
   }
 }
 
