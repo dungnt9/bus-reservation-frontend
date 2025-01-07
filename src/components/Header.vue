@@ -61,7 +61,7 @@
                   <i class="fas fa-phone"></i> Đổi số điện thoại
                 </router-link>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item" @click.prevent="handleLogout">
+                <a href="#" class="dropdown-item" @click.prevent="showLogoutConfirmation">
                   <i class="fas fa-sign-out-alt"></i> Đăng xuất
                 </a>
               </div>
@@ -81,12 +81,25 @@
       </div>
     </div>
   </nav>
+  <Modal v-model="showLogoutModal" title="Xác nhận đăng xuất">
+      <div class="logout-confirmation">
+        <p>Bạn có chắc chắn muốn đăng xuất không?</p>
+      </div>
+      <template #footer>
+        <div class="modal-footer-buttons">
+          <button @click="cancelLogout" class="cancel-btn">Hủy</button>
+          <button @click="confirmLogout" class="confirm-btn">Đăng xuất</button>
+        </div>
+      </template>
+    </Modal>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
+import Modal from './Modal.vue'
+const showLogoutModal = ref(false)
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -103,8 +116,18 @@ const handleClickOutside = (event) => {
   }
 }
 
-const handleLogout = () => {
+const showLogoutConfirmation = () => {
+  showDropdown.value = false
+  showLogoutModal.value = true
+}
+
+const cancelLogout = () => {
+  showLogoutModal.value = false
+}
+
+const confirmLogout = () => {
   authStore.logout()
+  showLogoutModal.value = false
   router.push('/login')
 }
 
@@ -246,5 +269,43 @@ onUnmounted(() => {
 
 li {
   margin-right: 2rem;
+}
+
+.logout-confirmation {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 1.5rem;
+}
+
+.modal-footer-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.cancel-btn, .confirm-btn {
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  border: none;
+}
+
+.cancel-btn {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.confirm-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #d0d0d0;
+}
+
+.confirm-btn:hover {
+  background-color: #c82333;
 }
 </style>
