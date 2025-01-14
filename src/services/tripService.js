@@ -10,7 +10,7 @@ const tripService = {
             const response = await api.get(`/trips/my-trips/${user.userId}`)
             return response
         } catch (error) {
-            console.error('Error fetching my trips:', error)
+            console.error('Lỗi khi lấy my trips:', error)
             throw error
         }
     },
@@ -20,7 +20,7 @@ const tripService = {
             const response = await api.put(`/trips/${tripId}/status`, updateData)
             return response
         } catch (error) {
-            console.error('Error updating trip status:', error)
+            console.error('Lỗi cập nhật trạng thái chuyến xe:', error)
             throw error
         }
     }

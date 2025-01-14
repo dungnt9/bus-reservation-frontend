@@ -158,7 +158,7 @@ const searchTrips = async () => {
     searchResults.value = response
     searchPerformed.value = true
   } catch (error) {
-    console.error('Error searching trips:', error)
+    console.error('Lỗi tìm kiếm chuyến xe:', error)
     alert('Có lỗi xảy ra khi tìm kiếm chuyến xe')
   } finally {
     loading.value = false
@@ -170,7 +170,7 @@ const fetchRoutes = async () => {
     const response = await api.get('/routes/all')
     routes.value = response.filter(route => route.routeStatus === 'active')
   } catch (error) {
-    console.error('Error fetching routes:', error)
+    console.error('Lỗi tải danh sách tuyến:', error)
     alert('Có lỗi xảy ra khi tải danh sách tuyến đường')
   }
 }

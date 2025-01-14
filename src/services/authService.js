@@ -24,14 +24,14 @@ const authService = {
       if (error.response) {
         switch (error.response.status) {
           case 401:
-            throw new Error('Invalid phone number or password')
+            throw new Error('Sai số điện thoại hoặc mật khẩu')
           case 403:
-            throw new Error('Access denied')
+            throw new Error('Truy cập bị từ chối')
           default:
-            throw new Error('Login failed. Please try again')
+            throw new Error('Đăng nhập thất bại')
         }
       }
-      throw new Error('Connection error. Please check your network')
+      throw new Error('Lỗi kết nối. Vui lòng kiểm tra mạng')
     }
   },
 
@@ -41,7 +41,7 @@ const authService = {
       const response = await api.post('/auth/verify-phone', { phoneNumber })
       return response
     } catch (error) {
-      throw new Error(error.response?.data?.message || 'Failed to send OTP')
+      throw new Error(error.response?.data?.message || 'Gửi mã OTP thất bại')
     }
   },
 
@@ -50,7 +50,7 @@ const authService = {
       const response = await api.post('/auth/verify-otp', { phoneNumber, otp })
       return response
     } catch (error) {
-      throw new Error(error.response?.data?.message || 'Failed to verify OTP')
+      throw new Error(error.response?.data?.message || 'Xác thực mã OTP thất bại')
     }
   },
 
@@ -59,7 +59,7 @@ const authService = {
       const response = await api.post('/auth/register', userData)
       return response
     } catch (error) {
-      throw new Error(error.response?.data?.message || 'Registration failed')
+      throw new Error(error.response?.data?.message || 'Đăng ký thất bại')
     }
   },
 

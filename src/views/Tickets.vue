@@ -119,7 +119,7 @@ const fetchTickets = async () => {
     }))
   } catch (err) {
     error.value = 'Không thể tải danh sách vé. Vui lòng thử lại sau.'
-    console.error('Error fetching tickets:', err)
+    console.error('Lỗi khi tải danh sách vé:', err)
   } finally {
     loading.value = false
   }

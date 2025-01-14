@@ -26,7 +26,7 @@
             <input
               type="text"
               v-model="otp"
-              placeholder="Enter OTP"
+              placeholder="Nhập OTP"
               maxlength="6"
             />
             <span class="error-message" v-if="errors.otp">{{ errors.otp }}</span>
@@ -54,7 +54,7 @@
             <input
               type="email"
               v-model="userData.email"
-              placeholder="Enter your email"
+              placeholder="Nhập email"
             />
           </div>
 
@@ -63,7 +63,7 @@
             <input
               type="password"
               v-model="userData.password_hash"
-              placeholder="Enter password"
+              placeholder="Nhập mật khẩu"
               :class="{ 'error': errors.password_hash }"
             />
             <span class="error-message" v-if="errors.password_hash">{{ errors.password_hash }}</span>
@@ -95,7 +95,7 @@
             ></textarea>
           </div>
 
-          <button type="submit" :disabled="loading">Register</button>
+          <button type="submit" :disabled="loading">Đăng ký</button>
         </form>
       </div>
 
@@ -140,11 +140,11 @@ const errors = reactive({
 const validatePhoneNumber = () => {
   errors.phoneNumber = '';
   if (!phoneNumber.value) {
-    errors.phoneNumber = 'Phone number is required';
+    errors.phoneNumber = 'Số điện thoại là bắt buộc';
     return false;
   }
   if (!/^0\d{9}$/.test(phoneNumber.value)) {
-    errors.phoneNumber = 'Please enter a valid 10-digit phone number starting with 0';
+    errors.phoneNumber = 'Số điện thoại không hợp lệ (10 số)';
     return false;
   }
   return true;
@@ -158,7 +158,7 @@ const sendOTP = async () => {
     errorMessage.value = '';
     await authService.sendOTP(phoneNumber.value);
     otpSent.value = true;
-    errorMessage.value = 'OTP sent successfully!';
+    errorMessage.value = 'Gửi OTP thành công';
   } catch (error) {
     errorMessage.value = error.message;
   } finally {
@@ -168,7 +168,7 @@ const sendOTP = async () => {
 
 const verifyOTP = async () => {
   if (!otp.value) {
-    errors.otp = 'Please enter OTP';
+    errors.otp = 'Vui lòng nhập OTP';
     return;
   }
 
@@ -192,12 +192,12 @@ const validateRegistrationForm = () => {
   errors.dateOfBirth = '';
 
   if (!userData.fullName) {
-    errors.fullName = 'Full name is required';
+    errors.fullName = 'Tên là bắt buộc';
     isValid = false;
   }
 
   if (!userData.password_hash || userData.password_hash.length < 6) {
-    errors.password_hash = 'Password must be at least 6 characters';
+    errors.password_hash = 'Mật khẩu phải có ít nhất 6 ký tự';
     isValid = false;
   }
 
@@ -211,7 +211,7 @@ const handleRegister = async () => {
     loading.value = true;
     errorMessage.value = '';
     await authService.register(userData);
-    alert('Registration successful! Please login to continue.');
+    alert('Đăng ký thành công. Vui lòng đăng nhập');
     router.push('/login');
   } catch (error) {
     errorMessage.value = error.message;

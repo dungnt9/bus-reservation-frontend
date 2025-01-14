@@ -112,7 +112,7 @@ const fetchInvoices = async () => {
     invoices.value = response
   } catch (err) {
     error.value = 'Không thể tải danh sách hóa đơn. Vui lòng thử lại sau.'
-    console.error('Error fetching invoices:', err)
+    console.error('Lỗi khi tải hóa đơn:', err)
   } finally {
     loading.value = false
   }

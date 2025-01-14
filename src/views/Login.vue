@@ -18,7 +18,7 @@
             <input
               type="text"
               v-model="phoneNumber"
-              placeholder="Enter your phone number"
+              placeholder="Nhập số điện thoại"
               :class="{ 'error': errors.phoneNumber }"
               maxlength="10"
             />
@@ -34,7 +34,7 @@
               <input
                 :type="showPassword ? 'text' : 'password'"
                 v-model="password"
-                placeholder="Enter your password"
+                placeholder="Nhập mật khẩu"
                 :class="{ 'error': errors.password }"
               />
               <button
@@ -73,21 +73,21 @@
           <div class="logo-container">
             <img src="/bus_logo.svg" alt="Bus Logo" class="logo" />
           </div>
-          <h1>Reset Password</h1>
-          <p v-if="!otpSent">Enter your phone number to receive OTP</p>
-          <p v-else>Enter OTP and new password</p>
+          <h1>Đặt lại mật khẩu</h1>
+          <p v-if="!otpSent">Nhập số điện thoại để nhận mã OTP</p>
+          <p v-else>Nhập OTP và mật khẩu mới</p>
         </div>
 
         <form @submit.prevent="handleResetPassword" class="login-form">
           <div v-if="!otpSent" class="form-group">
             <label>
               <i class="fas fa-phone"></i>
-              Phone Number
+              Số điện thoại
             </label>
             <input
               type="text"
               v-model="resetPhone"
-              placeholder="Enter your phone number"
+              placeholder="Nhập số điện thoại"
               :class="{ 'error': errors.resetPhone }"
               maxlength="10"
             />
@@ -98,12 +98,12 @@
             <div class="form-group">
               <label>
                 <i class="fas fa-key"></i>
-                OTP Code
+                Mã OTP
               </label>
               <input
                 type="text"
                 v-model="otp"
-                placeholder="Enter OTP code"
+                placeholder="Nhập mã OTP"
                 :class="{ 'error': errors.otp }"
                 maxlength="6"
               />
@@ -113,13 +113,13 @@
             <div class="form-group">
               <label>
                 <i class="fas fa-lock"></i>
-                New Password
+                Mật khẩu mới
               </label>
               <div class="password-input">
                 <input
                   :type="showNewPassword ? 'text' : 'password'"
                   v-model="newPassword"
-                  placeholder="Enter new password"
+                  placeholder="Nhập mật khẩu mới"
                   :class="{ 'error': errors.newPassword }"
                 />
                 <button
@@ -140,12 +140,12 @@
           </div>
 
           <button type="submit" class="login-button" :disabled="resetLoading">
-            <span v-if="!resetLoading">{{ !otpSent ? 'Send OTP' : 'Reset Password' }}</span>
+            <span v-if="!resetLoading">{{ !otpSent ? 'Gửi mã OTP' : 'Đặt lại mật khẩu' }}</span>
             <div v-else class="spinner"></div>
           </button>
 
           <button @click.prevent="toggleForgotPassword" class="back-button">
-            <i class="fas fa-arrow-left"></i> Back to Login
+            <i class="fas fa-arrow-left"></i> Quay lại đăng nhập
           </button>
         </form>
       </div>
@@ -221,15 +221,15 @@ const validateLoginForm = () => {
   errors.password = ''
 
   if (!phoneNumber.value) {
-    errors.phoneNumber = 'Phone number is required'
+    errors.phoneNumber = 'Số điện thoại là bắt buộc'
     isValid = false
   } else if (!/^\d{10}$/.test(phoneNumber.value)) {
-    errors.phoneNumber = 'Please enter a valid 10-digit phone number'
+    errors.phoneNumber = 'Vui lòng nhập số điện thoại hợp lệ gồm 10 chữ số'
     isValid = false
   }
 
   if (!password.value) {
-    errors.password = 'Password is required'
+    errors.password = 'Mật khẩu là bắt buộc'
     isValid = false
   }
 
@@ -241,25 +241,25 @@ const validateResetForm = () => {
 
   if (!otpSent.value) {
     if (!resetPhone.value) {
-      errors.resetPhone = 'Phone number is required'
+      errors.resetPhone = 'Số điện thoại là bắt buộc'
       isValid = false
     } else if (!/^\d{10}$/.test(resetPhone.value)) {
-      errors.resetPhone = 'Please enter a valid 10-digit phone number'
+      errors.resetPhone = 'Vui lòng nhập số điện thoại hợp lệ gồm 10 chữ số'
       isValid = false
     }
   } else {
     if (!otp.value) {
-      errors.otp = 'OTP is required'
+      errors.otp = 'OTP là bắt buộc'
       isValid = false
     } else if (!/^\d{6}$/.test(otp.value)) {
-      errors.otp = 'OTP must be 6 digits'
+      errors.otp = 'OTP phải có 6 chữ số'
       isValid = false
     }
     if (!newPassword.value) {
-      errors.newPassword = 'New password is required'
+      errors.newPassword = 'Mật khẩu mới là bắt buộc'
       isValid = false
     } else if (newPassword.value.length < 6) {
-      errors.newPassword = 'Password must be at least 6 characters'
+      errors.newPassword = 'Mật khẩu phải chứa ít nhất 6 ký tự'
       isValid = false
     }
   }
@@ -307,11 +307,11 @@ const handleResetPassword = async () => {
     } else {
       // Reset password
       await authService.resetPassword(resetPhone.value, otp.value, newPassword.value)
-      alert('Password reset successful. Please login with your new password.')
+      alert('Đặt lại mật khẩu thành công! Vui lòng đăng nhập bằng mật khẩu mới')
       toggleForgotPassword()
     }
   } catch (error) {
-    resetErrorMessage.value = error.response?.data?.message || 'An error occurred'
+    resetErrorMessage.value = error.response?.data?.message || 'Có lỗi xảy ra. Vui lòng thử lại sau'
   } finally {
     resetLoading.value = false
   }

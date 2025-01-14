@@ -147,7 +147,7 @@ const fetchTicketDetail = async () => {
     error.value = null
 
     if (!authStore.user?.userId) {
-      throw new Error('User not authenticated')
+      throw new Error('Người dùng không có quyền truy cập. Vui lòng đăng nhập.')
     }
 
     // Parse the ticketId to get invoiceId and seatNumber
@@ -159,12 +159,12 @@ const fetchTicketDetail = async () => {
     )
 
     if (response.length === 0) {
-      throw new Error('Ticket not found')
+      throw new Error('Không tìm thấy thông tin vé')
     }
 
     ticket.value = response[0]
   } catch (err) {
-    console.error('Error fetching ticket:', err)
+    console.error('Lỗi lấy thông tin vé:', err)
     error.value = 'Không thể tải thông tin vé. Vui lòng thử lại sau.'
   } finally {
     loading.value = false

@@ -124,7 +124,7 @@ const loadSeats = async () => {
       .map(seat => parseInt(seat.seatNumber));
     showSeatSelection.value = true;
   } catch (error) {
-    console.error('Error fetching seats:', error);
+    console.error('Lỗi khi tải thông tin ghế:', error);
     alert('Có lỗi xảy ra khi tải thông tin ghế');
   }
 };

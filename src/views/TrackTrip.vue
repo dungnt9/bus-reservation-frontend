@@ -158,7 +158,7 @@ const fetchTrips = async () => {
     const response = await api.get(`/trips/my-trips/${userId}`)
     trips.value = response
   } catch (error) {
-    console.error('Error fetching trips:', error)
+    console.error('Lỗi tải danh sách chuyến xe:', error)
     alert('Có lỗi xảy ra khi tải danh sách chuyến xe')
   }
 }
