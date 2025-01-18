@@ -1,41 +1,125 @@
-# fe
+# Bus Reservation Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue.js-based frontend application for a bus ticket reservation system.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Overview
 
-## Customize configuration
+This project is a web application that allows users to search, book, and manage bus tickets. It includes features for both customers and staff (drivers/assistants).
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+---
 
-## Project Setup
+## Key Features
+
+### Authentication & User Management
+- Login/Register with phone number verification (OTP)
+- Password reset functionality
+- Profile management
+- Phone number change with verification
+
+### Customer Features
+- Search bus routes and trips
+- View seat availability
+- Book tickets
+- View booking history and e-tickets
+- View invoices and payment history
+- Print tickets
+
+### Staff Features (Drivers/Assistants)
+- Track and update trip status
+- Manage departure/arrival times
+- View assigned trips
+
+---
+
+## Technical Stack
+- **Frontend Framework:** Vue 3
+- **Build Tool:** Vite
+- **State Management:** Pinia
+- **UI Components:**
+  - Bootstrap for styling
+  - FontAwesome for icons
+  - Custom components
+
+---
+
+## Project Structure
+
+### Key Components
+- **Authentication:** Complete login/register flow with OTP verification
+- **Seat Selection:** Interactive seat map for bus booking
+- **Payment Processing:** Support for cash and card payments
+- **Ticket Management:** Digital ticket system with printing capability
+- **Route Tracking:** Real-time trip status updates for staff
+
+---
+
+## Development Setup
+
+### Install dependencies:
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Run development server:
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Build for production:
 
 ```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+---
 
-```sh
-npm run test:unit
-```
+## Demo
 
-### Lint with [ESLint](https://eslint.org/)
+### Home Page
+![Home Page](public/images/UIKhach/TrangChu.png)
 
-```sh
-npm run lint
-```
+### Login
+![Login](public/images/UIKhach/DangNhap.png)
+
+### Register
+![Register](public/images/UIKhach/DangKy.png)
+
+### Book Ticket
+![Book Ticket](public/images/UIKhach/Datve.png)
+
+### Ticket Details
+![Ticket Details](public/images/UIKhach/ChiTietVe.png)
+
+### Enter OTP
+![Enter OTP](public/images/UIKhach/NhapOTP.png)
+
+### Phone Number to Send OTP
+![Phone Number to Send OTP](public/images/UIKhach/SDTDeGuiOTP.png)
+
+### Change Password
+![Change Password](public/images/UIKhach/DoiMatKhau.png)
+
+### Change Phone Number
+![Change Phone Number](public/images/UIKhach/DoiSDT.png)
+
+### Invoice Information
+![Invoice](public/images/UIKhach/HoaDon.png)
+
+### Payment
+![Payment](public/images/UIKhach/ThanhToan.png)
+
+### Success
+![Success](public/images/UIKhach/ThanhCong.png)
+
+### Edit Information
+![Edit Information](public/images/UIKhach/SuaThongTin.png)
+
+### Ticket
+![Ticket](public/images/UIKhach/Ve.png)
+
+### Manage Trips (Staff)
+![Manage Trips](public/images/UINhanVien/Quản lý chuyến xe.png)
