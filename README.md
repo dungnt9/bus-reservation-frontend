@@ -122,4 +122,4 @@ npm run build
 ![Ticket](public/images/UIKhach/Ve.png)
 
 ### Manage Trips (Staff)
-![Manage Trips](public/images/UINhanVien/Quản lý chuyến xe.png)
+![Manage Trips](public/images/UINhanVien/QuanLyChuyenXe.png)
